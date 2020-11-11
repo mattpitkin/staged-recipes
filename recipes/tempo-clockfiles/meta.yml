@@ -1,0 +1,28 @@
+{% set gitcommit = "28431dae3323b4587a9002dd611e591bf50977a5" %}
+
+package:
+    name: tempo-clockfiles
+    version: {{ os.environ.get('VERSION') }} 
+
+source:
+  url: https://github.com/nanograv/tempo/archive/{{ gitcommit }}.zip
+  sha256: 0d3206736354e265221ebd6981788ded3131dfcc36a6
+
+build:
+    number: 0
+    skip: true  # [win]
+    noarch: generic
+
+requirements:
+    build:
+    host:
+    run:
+
+test:
+  commands:
+    - test -f $PREFIX/share/tempo/ut1.dat  # [unix]
+
+extra:
+  recipe-maintainers:
+    - demorest
+    - mattpitkin
